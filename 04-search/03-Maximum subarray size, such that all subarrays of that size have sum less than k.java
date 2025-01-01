@@ -15,6 +15,7 @@ class GFG {
 		}		
 		return answer;
 		*/
+		// Optimized approach: Time complexity is O(N) and space complexity is O(1).
 		int start = 0;
 		int end = 0;
 		int sum = 0;
