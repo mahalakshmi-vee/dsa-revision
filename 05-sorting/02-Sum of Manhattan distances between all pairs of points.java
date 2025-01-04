@@ -35,4 +35,12 @@ class GFG {
 	return answer;
     }
 }
-
+/* Note: Formula derivation to calculate the pair of distances sum in a single iteration for future reference.
+                0   1   2   3   4   5   6
+Suppose we have x1, x2, x3, x4, x5, x6, x7 x-coordinates when x1 <= x2 <= x3 <= x4 <= x5 <= x6 <= x7
+Let i = 5
+The task is to calculate the pair of distance sum from x6 to all the previous points
+(x6 - x1) + (x6 - x2) + (x6 - x3) + (x6 - x4) + (x6 - x5)
+4 * x6 - (x1 + x2 + x3 + x4 + x5) is the equation to calculate the pair of distance sum in a single iteration.
+Formula: i * xi - Sum of all previous values of xi.
+*/
