@@ -1,0 +1,43 @@
+What is time complexity of following code :
+
+        int count = 0;
+        for (int i = N; i > 0; i /= 2) {
+            for (int j = 0; j < i; j++) {
+                count += 1;
+            }
+        }
+
+Time Complexity: O(N)
+
+Explanation:
+N + (N / 2) + (N / 4) + (N / 8) + (N / 16) + ...... + 1.
+
+The above expression is the sum of finite geometric progression series.
+
+a = N (the first term)
+r = 1/2 (the common ratio)
+n = logn + 1 (with base = 2)
+
+The formula to calculate sum of G.P is a (1 - (r ^ n)) / 1 - r
+= n * (1 - ((1/2) ^ (logn + 1))) / (1 - 1/2)
+= n * (1 - ((1/2) ^ (logn + 1))) / (1/2)
+= 2 * n * (1 - ((1/2) ^ (logn + 1)))
+
+
+Sub expression derivation: (1/2) ^ (logn + 1)
+(1/2) ^ (logn + 1) = ((1/2) ^ logn) * ((1/2) ^ 1)
+(1/2) ^ logn = 1 / (2 ^ logn (with base2))
+2 ^ logn (with base2) = n
+
+(1/2) ^ (logn + 1) = (1 / n) * (1 / 2)
+= (1 / 2n)
+
+Let's come back to the main expression derivation:
+= 2 * n * (1 - (1 / 2n))
+= 2n * (1 - (1 / 2n))
+= 2n - 2n / 2n
+= 2n - 1
+
+As per aymptotic analysis, we will be removing the constants and lower order coefficient expression while determining the time complexity.
+
+Hence time complexity is O(N).
