@@ -1,0 +1,17 @@
+What is the time complexity of the following code :
+
+int i, j, k = 0;
+for (i = n/2; i <= n; i++) {
+    for (j = 2; j <= n; j = j * 2) {
+         k = k + n/2;
+    }
+}
+
+Time Complexity: O(n log n)
+
+Explanation:
+Inner loop runs logn times at each iteration start.
+Outer loop runs n / 2 number of times
+
+(n / 2) * logn
+
