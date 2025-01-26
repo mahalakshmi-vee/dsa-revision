@@ -51,3 +51,23 @@
 //             ( 1 ) 1 => ( () ) ()
 //             ( 2 ) 0 => ( ()() ), ( ( () ))
             
+import java.util.*;
+class Main {
+    // Optimized approach:
+    // Time complexity is O(N)
+    // Space complexity is O(N)
+    public static void main(String[] args) {
+        int n = 6;
+        if (n % 2 == 0) {
+            n = n / 2;
+            int[] dp = new int[n + 1];
+            dp[0] = 1;
+            for (int i = 1; i <= n; i++) {
+                for (int j = 0; j < i; j++) {
+                    dp[i] += (dp[j] * dp[i - j - 1]);
+                }
+            }
+            System.out.println("Total number of valid parentheses is: "+dp[n]);
+        }
+    }
+}
