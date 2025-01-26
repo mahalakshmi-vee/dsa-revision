@@ -1,0 +1,19 @@
+Which of the following is not bounded by O(n^2)?
+
+
+Option A: (15^10) * n + 12099
+Option B: n^1.98
+Option C: n^3 / (sqrt(n))
+Option D: (2^20) * n
+
+Answer: Option C.
+
+Explanation:
+As per asymptotic analysis, we will be ignoring the constants and lower order coefficients while determining the time and space complexity of an algorithm.
+
+Option A: n
+Option B: n ^ 2 <= n ^ 2
+Option C: n ^ 3 > n ^ 2
+Option D: n
+
+By checking all the results Option C is not bounded by O(N ^ 2)
