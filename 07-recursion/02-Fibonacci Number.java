@@ -1,8 +1,8 @@
 class Solution {
     public int fib(int n) {
-        // Base Case.
+        // Base Case
         if (n <= 1) return n;
-        // Recurrence Relation.
+        // Recurrence Relation
         return fib(n - 1) + fib(n - 2);
     }
 }
