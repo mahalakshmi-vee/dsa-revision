@@ -2,20 +2,20 @@ class Solution {
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> listAnswer = new ArrayList<>();
-        find (listAnswer, nums, new ArrayList<>(), 0);
+        backtrack (listAnswer, nums, new ArrayList<>(), 0);
         return listAnswer;
     }
-    private void find (List<List<Integer>> listAnswer, int[] nums, List<Integer> listSubAnswer, int index) {
+    private void backtrack (List<List<Integer>> listAnswer, int[] nums, List<Integer> listSubAnswer, int index) {
         if (index >= nums.length) {
             listAnswer.add(new ArrayList<>(listSubAnswer));
             return;
         }
         listSubAnswer.add(nums[index]);
-        find (listAnswer, nums, listSubAnswer, index + 1);
+        backtrack (listAnswer, nums, listSubAnswer, index + 1);
         listSubAnswer.remove(listSubAnswer.size() - 1);
         int nextIndex = index + 1;
         while (nextIndex < nums.length && nums[index] == nums[nextIndex]) nextIndex++;
-        find (listAnswer, nums, listSubAnswer, nextIndex);
+        backtrack (listAnswer, nums, listSubAnswer, nextIndex);
     }
 }
 
