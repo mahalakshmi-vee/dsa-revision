@@ -24,6 +24,7 @@ class Solution {
         }
     }
 }
+// Time and Space Complexity Analysis:
 // Time Complexity: O(N * N!)
 // Space Complexity: O(N * N!) for storing the result
 // The number of permutations of an array of n is exactly n! This is because:
