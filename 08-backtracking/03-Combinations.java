@@ -5,17 +5,17 @@ class Solution {
         List<List<Integer>> listAnswer = new ArrayList<>();
         List<Integer> listNum = new ArrayList<>();
         for (int i = 1; i <= n; i++) listNum.add(i);
-        find (listNum, listAnswer, 0, new ArrayList<>(), k);
+        backtrack (listNum, listAnswer, 0, new ArrayList<>(), k);
         return listAnswer;
     }
-    private void find (List<Integer> listNum, List<List<Integer>> listAnswer, int index, List<Integer> listSubAnswer, int k) {
+    private void backtrack (List<Integer> listNum, List<List<Integer>> listAnswer, int index, List<Integer> listSubAnswer, int k) {
         if (listSubAnswer.size() == k) {
             listAnswer.add(new ArrayList<>(listSubAnswer));
             return;
         }
         for (int i = index; i < listNum.size(); i++) {
             listSubAnswer.add(listNum.get(i));
-            find (listNum, listAnswer, i + 1, listSubAnswer, k);
+            backtrack (listNum, listAnswer, i + 1, listSubAnswer, k);
             listSubAnswer.remove(listSubAnswer.size() - 1);
         }
     }
