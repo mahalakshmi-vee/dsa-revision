@@ -6,10 +6,10 @@ class Solution {
             frequencyMap.put(nums[i], frequencyMap.getOrDefault(nums[i], 0) + 1);
         }   
         List<List<Integer>> listAnswer = new ArrayList<>();
-        find (listAnswer, new ArrayList<>(), nums, frequencyMap);
+        backtrack (listAnswer, new ArrayList<>(), nums, frequencyMap);
         return listAnswer;
     }
-    private void find (List<List<Integer>> listAnswer, List<Integer> listSubAnswer, int[] nums, Map<Integer, Integer> frequencyMap) {
+    private void backtrack (List<List<Integer>> listAnswer, List<Integer> listSubAnswer, int[] nums, Map<Integer, Integer> frequencyMap) {
         if (listSubAnswer.size() == nums.length) {
             listAnswer.add(new ArrayList<>(listSubAnswer));
             return;
@@ -18,7 +18,7 @@ class Solution {
             if (entry.getValue() == 0) continue;
             frequencyMap.put(entry.getKey(), entry.getValue() - 1);
             listSubAnswer.add(entry.getKey());
-            find (listAnswer, listSubAnswer, nums, frequencyMap);
+            backtrack (listAnswer, listSubAnswer, nums, frequencyMap);
             listSubAnswer.remove(listSubAnswer.size() - 1);
             frequencyMap.put(entry.getKey(), entry.getValue() + 1);
         }
