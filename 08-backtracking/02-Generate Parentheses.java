@@ -4,10 +4,10 @@ class Solution {
     // Space Complexity: O(C with base N)
     public List<String> generateParenthesis(int n) {
         List<String> listParenthesis = new ArrayList<>();
-        find (listParenthesis, n, 0, 0, new StringBuilder());
+        backtrack (listParenthesis, n, 0, 0, new StringBuilder());
         return listParenthesis;
     }
-    private void find (List<String> listParenthesis, int n, int open, int close, StringBuilder sb) {
+    private void backtrack (List<String> listParenthesis, int n, int open, int close, StringBuilder sb) {
         if (sb.length() == 2 * n) {
             listParenthesis.add(sb.toString());
             return;
@@ -15,13 +15,13 @@ class Solution {
 
         if (open < n) {
             sb.append("(");
-            find(listParenthesis, n, open + 1, close, sb);
+            backtrack(listParenthesis, n, open + 1, close, sb);
             sb.deleteCharAt(sb.length() - 1);
         }
 
         if (close < open) {
             sb.append(")");
-            find(listParenthesis, n, open, close + 1, sb);
+            backtrack(listParenthesis, n, open, close + 1, sb);
             sb.deleteCharAt(sb.length() - 1);
         }
 
