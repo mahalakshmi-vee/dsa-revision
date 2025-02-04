@@ -9,6 +9,10 @@
  * }
  */
 class Solution {
+    // Time Complexity: O(N Log K)
+    // Sapce Complexity: O(Log K)
+    // K represents the length of the lists array.
+    // N represents the total number of nodes across all linked lists in the lists array. 
     public ListNode mergeKLists(ListNode[] lists) {
         
         return mergeSort(lists, 0, lists.length - 1);
