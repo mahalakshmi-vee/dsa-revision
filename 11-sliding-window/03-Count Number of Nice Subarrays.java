@@ -17,9 +17,9 @@ class Solution {
         // Optimized approach - Using Sliding Window.
         // Time Complexity: O(N)
         // Space Complexity: O(1)
-        return countAtMostKOddNumbers(nums, k) - countAtMostKOddNumbers(nums, k - 1);
+        return countSubarraysWithAtMostKOdd(nums, k) - countSubarraysWithAtMostKOdd(nums, k - 1);
     }
-    private int countAtMostKOddNumbers(int[] nums, int k) {
+    private int countSubarraysWithAtMostKOdd(int[] nums, int k) {
         int count = 0;
         int n = nums.length;
         int leftPointer = 0;
