@@ -34,3 +34,8 @@ class Solution {
         return answer;
     }
 }
+
+// A valid subarray might have multiple valid subarrays inside of it. To count the exact number of valid subarrays, we use the difference between 
+// the counts of subarrays with at most goal and at most goal - 1.
+
+// If I am asked to return the maximum size subarray, then I can run a single loop with the sliding window approach to find the answer.
