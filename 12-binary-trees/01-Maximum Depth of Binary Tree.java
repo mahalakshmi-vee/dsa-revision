@@ -14,6 +14,8 @@
  * }
  */
 class Solution {
+    // Time Complexity: O(N)
+    // Space Complexity: O(N)
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
         int maxDepth = 0;
