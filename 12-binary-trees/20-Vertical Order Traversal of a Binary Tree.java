@@ -13,6 +13,8 @@
  *     }
  * }
  */
+// Time Complexity: O(N Log N)
+// Space Complexity: O(N)
 class Solution {
     class Pair implements Comparable<Pair> {
         TreeNode node;
