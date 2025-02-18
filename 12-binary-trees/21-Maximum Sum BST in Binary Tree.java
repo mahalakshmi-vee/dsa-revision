@@ -53,40 +53,49 @@
 // Space complexity: O(N)
 class Solution {
     private int answer = Integer.MIN_VALUE;
-    class Pair {    
-        boolean isBST = false;
-        int maxLeft = Integer.MIN_VALUE;
-        int minRight = Integer.MAX_VALUE;
-        int sum = 0; 
-        public Pair() {}
+    class SubTreeInfo {    
+        boolean isBST;
+        int maxLeft;
+        int minRight;
+        int sum; 
+        public SubTreeInfo() {
+            isBST = false;
+            maxLeft = Integer.MIN_VALUE;
+            minRight = Integer.MAX_VALUE;
+            sum = 0;
+        }
     }
     public int maxSumBST(TreeNode root) {
-        postOrder(root);
+        traversePostOrder(root);
         return answer < 0 ? 0 : answer;
     }
-    private Pair postOrder(TreeNode root) {
-        if (root == null) return null;
-
-        Pair leftPair = postOrder(root.left);
-        Pair rightPair = postOrder(root.right);
-
-        boolean isLSTBST = leftPair == null ? true : leftPair.isBST;
-        boolean isRSTBST = rightPair == null ? true : rightPair.isBST;
-        int lstMaxLeft = leftPair == null ? Integer.MIN_VALUE : leftPair.maxLeft;
-        int lstMinRight = leftPair == null ? Integer.MAX_VALUE : leftPair.minRight;
-        int rstMaxLeft = rightPair == null ? Integer.MIN_VALUE : rightPair.maxLeft;
-        int rstMinRight = rightPair == null ? Integer.MAX_VALUE : rightPair.minRight; 
-
-        Pair pair = new Pair();
-        pair.sum = root.val;
-        if (leftPair != null) pair.sum += leftPair.sum;
-        if (rightPair != null) pair.sum += rightPair.sum;    
-        if (root.val > lstMaxLeft && root.val < rstMinRight && isLSTBST && isRSTBST) {
-            pair.isBST = true;
-            answer = Math.max(answer, pair.sum);
+    private SubTreeInfo traversePostOrder(TreeNode root) {
+        if (root == null) {
+            SubTreeInfo subTreeInfo = new SubTreeInfo();
+            subTreeInfo.isBST = true;
+            return subTreeInfo;
         }
-        pair.maxLeft = Math.max(root.val , Math.max(lstMaxLeft, rstMaxLeft));
-        pair.minRight = Math.min(root.val, Math.min(lstMinRight, rstMinRight));
-        return pair;
+
+        SubTreeInfo lstInfo = traversePostOrder(root.left);
+        SubTreeInfo rstInfo = traversePostOrder(root.right);
+
+        boolean isLSTBST = lstInfo.isBST;
+        boolean isRSTBST = rstInfo.isBST;
+        int lstMaxLeft = lstInfo.maxLeft;
+        int lstMinRight = lstInfo.minRight;
+        int rstMaxLeft = rstInfo.maxLeft;
+        int rstMinRight = rstInfo.minRight; 
+
+        SubTreeInfo subTreeInfo = new SubTreeInfo();
+        subTreeInfo.sum = root.val;
+        subTreeInfo.sum += lstInfo.sum;
+        subTreeInfo.sum += rstInfo.sum;    
+        if (root.val > lstMaxLeft && root.val < rstMinRight && isLSTBST && isRSTBST) {
+            subTreeInfo.isBST = true;
+            answer = Math.max(answer, subTreeInfo.sum);
+        }
+        subTreeInfo.maxLeft = Math.max(root.val , Math.max(lstMaxLeft, rstMaxLeft));
+        subTreeInfo.minRight = Math.min(root.val, Math.min(lstMinRight, rstMinRight));
+        return subTreeInfo;
     }   
 }
